@@ -23,7 +23,8 @@ public class FrameworkHook {
 	public void setup() {	
 		 
 		String browser= System.getProperty("browser", String.valueOf(BrowserType.CHROME));
-		driver = DriverFactory.getBrowser(browser.toLowerCase());
+		String isRemote= System.getProperty("isRemote", "true");
+		driver = DriverFactory.getBrowser(browser.toLowerCase(),Boolean.parseBoolean(isRemote) );
 		driver.manage().window().maximize();
 		driver.get(ConfigLoader.getInstance().getBaseurl());
 		context.driver= driver;

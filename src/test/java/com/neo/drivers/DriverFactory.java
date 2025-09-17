@@ -24,9 +24,21 @@ public class DriverFactory {
 		hmap.put(String.valueOf(BrowserType.EDGE).toLowerCase(), getEdge);
 	}
 	 
-	public static WebDriver getBrowser(String browser) {
 		
-		return hmap.get(browser).get();
-	}
+	  public static WebDriver getBrowser(String browser, boolean isRemote) {
+
+	        if (isRemote) {
+	            // Assume LambdaTestCloud is a class that handles remote setup
+	            return LambdaTestCloud.setup(browser);
+	        } else {
+	            // Handle local browser instantiation
+	            Supplier<WebDriver> driverSupplier = hmap.get(browser.toLowerCase());
+	            if (driverSupplier == null) {
+	                throw new IllegalArgumentException("Unsupported local browser: " + browser);
+	            }
+	            return driverSupplier.get();
+	        }
+	        
+	  }
 
 }
