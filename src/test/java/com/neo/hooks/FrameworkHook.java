@@ -2,10 +2,10 @@ package com.neo.hooks;
 
 import org.openqa.selenium.WebDriver;
 
-import com.neo.constants.BrowserType;
+import com.neo.constants.BrowserTypes;
 import com.neo.drivers.DriverFactory;
 import com.neo.frameworkcontext.SharedContext;
-import com.neo.utils.ConfigLoader;
+import com.neo.utils.ConfigLoaders;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -20,16 +20,17 @@ public class FrameworkHook {
 	}
 	
 	@Before
-	public void setup() {	
-		 
-		String browser= System.getProperty("browser", String.valueOf(BrowserType.CHROME));
-		String isRemote= System.getProperty("isRemote", "true");
-		driver = DriverFactory.getBrowser(browser.toLowerCase(),Boolean.parseBoolean(isRemote) );
+	public void setup() {
+	     
+		String browser = System.getProperty("browser", String.valueOf(BrowserTypes.CHROME));				
+		driver = DriverFactory.getDriver(browser.toUpperCase());		
 		driver.manage().window().maximize();
-		driver.get(ConfigLoader.getInstance().getBaseurl());
-		context.driver= driver;
+		driver.get(ConfigLoaders.getInstance().getBaseurl());
+		context.driver = driver;
+	 
 		System.out.println(" before : context driver "+ context.driver +" simple driver "+ driver);
 	}	
+	
 	
 	@After
 	public void teardown() {
@@ -37,4 +38,11 @@ public class FrameworkHook {
 		driver.quit();
 	}
 
-}
+}	 
+
+ 
+
+
+
+
+ 

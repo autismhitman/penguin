@@ -1,6 +1,6 @@
 package com.neo.apis;
 
-import com.neo.utils.ConfigLoader;
+import com.neo.utils.ConfigLoaders;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
@@ -13,7 +13,7 @@ public class SpecBuilder {
 public static RequestSpecification getRequestSpec() {
 		
 		RequestSpecification rqst= new RequestSpecBuilder()
-				  .setBaseUri(ConfigLoader.getInstance().getBaseurl())			 
+				  .setBaseUri(ConfigLoaders.getInstance().getBaseurl())			 
 				  .log(LogDetail.ALL)
 				  .build();
 		 

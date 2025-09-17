@@ -4,12 +4,12 @@ import java.util.Properties;
 
 import com.neo.constants.EnvType;
 
-public class ConfigLoader {	
+public class ConfigLoaders {	
 	
 	private Properties properties;
-	private static ConfigLoader instance;
+	private static ConfigLoaders instance;
 	
-	private ConfigLoader() {
+	private ConfigLoaders() {
 		
 		String env = System.getProperty("env", String.valueOf(EnvType.STAGE));
 		
@@ -23,11 +23,11 @@ public class ConfigLoader {
 	
 	}
 	
-	public static ConfigLoader getInstance() {
+	public static ConfigLoaders getInstance() {
 		
 		if(instance==null) {
 			
-			instance = new ConfigLoader();
+			instance = new ConfigLoaders();
 		}
 		return instance;
 	}

@@ -1,6 +1,6 @@
 package com.neo.constants;
 
-public enum BrowserType {
+public enum BrowserTypes {
 	
 	CHROME,
 	EDGE
